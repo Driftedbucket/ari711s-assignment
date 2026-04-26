@@ -71,3 +71,17 @@ def _get_next_state_and_reward(self, state, action):
             reward = -1
         
         return next_state, reward
+
+def _epsilon_greedy_action(self, state):
+       
+        if np.random.random() < self.epsilon:
+            # Explore: random action
+            return np.random.randint(self.num_actions)
+        else:
+            # Exploit: greedy action
+            q_values = self.Q[state]
+            # If multiple actions have same max value, choose randomly among them
+            max_q = np.max(q_values)
+            best_actions = np.where(q_values == max_q)[0]
+            return np.random.choice(best_actions)
+    
