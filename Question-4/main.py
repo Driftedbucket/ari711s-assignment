@@ -32,4 +32,9 @@ def _print_initialization(self):
         print(f"ε = {self.epsilon}")
         print(f"α = {self.alpha}")
 
-
+def _is_special_state(self, state):
+        """Check if state is a special state and return its name"""
+        for name, pos in self.special_states.items():
+            if state == pos:
+                return name
+        return None
