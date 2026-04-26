@@ -104,3 +104,42 @@ def _sarsa_update(self, state, action, reward, next_state, next_action):
         self.Q[state][action] = current_q + self.alpha * (
             reward + self.gamma * next_q - current_q
         )
+
+    def train(self, episodes=5000, max_steps=5000):
+        """
+        Train the agent using SARSA algorithm.
+        
+        Args:
+            episodes: Number of training episodes
+            max_steps: Maximum steps per episode
+        """
+        print(f"Episodes = {episodes}")
+        print(f"Steps = {max_steps}")
+        print()
+        print("Training...")
+        
+        for episode in range(episodes):
+            # Start from random state
+            state = (np.random.randint(self.grid_size), np.random.randint(self.grid_size))
+            action = self._epsilon_greedy_action(state)
+            
+            for step in range(max_steps):
+                # Take action and observe reward and next state
+                next_state, reward = self._get_next_state_and_reward(state, action)
+                
+                # Select next action
+                next_action = self._epsilon_greedy_action(next_state)
+                
+                # Update Q-value (SARSA)
+                self._sarsa_update(state, action, reward, next_state, next_action)
+                
+                # Move to next state
+                state = next_state
+                action = next_action
+            
+            # Print progress
+            if (episode + 1) % 1000 == 0:
+                print(f"Completed {episode + 1} episodes")
+        
+        print("Training complete!")
+        print()
