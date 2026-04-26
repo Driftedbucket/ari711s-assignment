@@ -86,17 +86,7 @@ def _epsilon_greedy_action(self, state):
             return np.random.choice(best_actions)
 
 def _sarsa_update(self, state, action, reward, next_state, next_action):
-        """
-        Update Q-value using SARSA update rule.
-        Q(s,a) ← Q(s,a) + α [r + γ Q(s',a') − Q(s,a)]
         
-        Args:
-            state: Current state
-            action: Current action
-            reward: Reward received
-            next_state: Next state
-            next_action: Next action
-        """
         current_q = self.Q[state][action]
         next_q = self.Q[next_state][next_action]
         
