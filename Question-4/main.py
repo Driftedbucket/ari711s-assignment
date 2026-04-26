@@ -20,7 +20,7 @@ class GridworldSARSA:
         self.actions={"north","south","east","west"}
 
 def _print_initialization(self):
-        """Print initialization information"""
+        
         print("Initializing Gridworld...")
         print(f"Grid size: {self.grid_size}x{self.grid_size}")
         print(f"Special_states = {self.special_states}")
@@ -31,3 +31,5 @@ def _print_initialization(self):
         print(f"γ = {self.gamma}")
         print(f"ε = {self.epsilon}")
         print(f"α = {self.alpha}")
+
+
