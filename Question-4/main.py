@@ -155,3 +155,17 @@ def _sarsa_update(self, state, action, reward, next_state, next_action):
                 V[row, col] = np.max(q_values)
         
         return V
+
+def get_optimal_policy(self):
+        
+        policy = np.zeros((self.grid_size, self.grid_size), dtype=int)
+        
+        for row in range(self.grid_size):
+            for col in range(self.grid_size):
+                state = (row, col)
+                q_values = self.Q[state]
+                # If multiple actions have same max value, choose first (arbitrary)
+                policy[row, col] = np.argmax(q_values)
+        
+        return policy
+    
