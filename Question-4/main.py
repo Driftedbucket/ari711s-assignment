@@ -216,3 +216,18 @@ def print_results(self):
                 print(f" {arrow} ", end=" ")
             print()
         print()
+
+def main():
+    # Create environment and SARSA agent
+    agent = GridworldSARSA(
+        grid_size=5,
+        gamma=0.9,
+        epsilon=0.1,
+        alpha=0.2
+    )
+    
+    
+    agent.train(episodes=5000, max_steps=100)
+    
+    # Print results
+    agent.print_results()
