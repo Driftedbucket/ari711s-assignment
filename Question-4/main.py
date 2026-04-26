@@ -38,3 +38,36 @@ def _is_special_state(self, state):
             if state == pos:
                 return name
         return None
+
+def _get_next_state_and_reward(self, state, action):
+        
+        row, col = state
+        
+        # Check if current state is special
+        special_name = self._is_special_state(state)
+        if special_name:
+            # From special state, any action transitions to next_to_state with special reward
+            reward = self.special_rewards[special_name]
+            next_state = self.next_to_states[special_name]
+            return next_state, reward
+        
+        # Normal state transitions
+        if action == 0:  # north
+            new_row, new_col = row - 1, col
+        elif action == 1:  # south
+            new_row, new_col = row + 1, col
+        elif action == 2:  # east
+            new_row, new_col = row, col + 1
+        elif action == 3:  # west
+            new_row, new_col = row, col - 1
+        
+        # Check if new position is within grid
+        if 0 <= new_row < self.grid_size and 0 <= new_col < self.grid_size:
+            next_state = (new_row, new_col)
+            reward = 0
+        else:
+            # Moving off grid keeps agent in same state with penalty
+            next_state = state
+            reward = -1
+        
+        return next_state, reward
