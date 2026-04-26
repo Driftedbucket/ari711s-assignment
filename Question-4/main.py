@@ -168,4 +168,51 @@ def get_optimal_policy(self):
                 policy[row, col] = np.argmax(q_values)
         
         return policy
-    
+
+def print_results(self):
+        
+        V = self.get_value_function()
+        policy = self.get_optimal_policy()
+        
+        # Print value function
+        print("=" * 60)
+        print("FINAL VALUE FUNCTION V(s) = max_a Q(s,a)")
+        print("=" * 60)
+        print()
+        
+        # Format and print V
+        for row in range(self.grid_size):
+            for col in range(self.grid_size):
+                print(f"{V[row, col]:7.2f}", end=" ")
+            print()
+        print()
+        
+        # Print optimal policy in text form
+        print("=" * 60)
+        print("OPTIMAL POLICY (text form)")
+        print("=" * 60)
+        print()
+        
+        for row in range(self.grid_size):
+            for col in range(self.grid_size):
+                action_idx = policy[row, col]
+                action_name = self.actions[action_idx]
+                print(f"{action_name:6s}", end=" ")
+            print()
+        print()
+        
+        # Print optimal policy in arrow form
+        print("=" * 60)
+        print("OPTIMAL POLICY (arrow form)")
+        print("=" * 60)
+        print()
+        
+        arrow_map = {0: '↑', 1: '↓', 2: '→', 3: '←'}
+        
+        for row in range(self.grid_size):
+            for col in range(self.grid_size):
+                action_idx = policy[row, col]
+                arrow = arrow_map[action_idx]
+                print(f" {arrow} ", end=" ")
+            print()
+        print()
