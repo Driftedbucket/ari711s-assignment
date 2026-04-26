@@ -19,3 +19,15 @@ class GridworldSARSA:
         #possible actions
         self.actions={"north","south","east","west"}
 
+def _print_initialization(self):
+        """Print initialization information"""
+        print("Initializing Gridworld...")
+        print(f"Grid size: {self.grid_size}x{self.grid_size}")
+        print(f"Special_states = {self.special_states}")
+        print(f"Next_to_states = {self.next_to_states}")
+        print(f"Special_rewards = {self.special_rewards}")
+        print()
+        print("Starting Q-learning with parameters:")
+        print(f"γ = {self.gamma}")
+        print(f"ε = {self.epsilon}")
+        print(f"α = {self.alpha}")
